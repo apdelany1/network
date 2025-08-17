@@ -1,21 +1,25 @@
 {% extends "network/layout.html" %}
+{% load static %}
 
 {% block body %}
-    <div class="container">
+    <div class="container-xxl" id="container">
         {% if user.is_authenticated %}
         <h1>All Posts</h1>
         <section class="post">
-            <form action="{% url 'post' %}" method="post"> 
+            <h2>New Post!</h2>
+            <form id="statusUpdate"> 
                 {% csrf_token %}
-                <textarea class="form-control" id="post-body" placeholder="What's on your mind?" name="post"></textarea>
+                <textarea class="form-control" id="post-body" placeholder="What's on your mind? 200 characters or less!" name="post"></textarea>
                 <input class="btn btn-primary" type="submit" value="Post!">
             </form>
         </section>
-        <section class="posts">
-            {% if message %}
-                <h1>{{ message }}</h1>
-            {% endif %}
-        </section>
         {% endif %}
+        <section id="allPosts">
+
+        </section>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/script.js' %}"></script>
 {% endblock %}
