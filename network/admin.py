@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import User, Posts, Follower, Likes
 
-# Register your models here.
-
 class PostsAdmin(admin.ModelAdmin):
     list_display = ("__str__",)
 

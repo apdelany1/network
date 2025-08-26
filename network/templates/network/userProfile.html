@@ -3,34 +3,29 @@
 
 {% block body %}
 <div class="container-xxl" id="container">
-    <h1 style="font-size:3rem; text-align:center">✧ ✦ ✹ ✺ ✻ ✼ ✽ ✾ ✿ All Posts ✿ ✾ ✽ ✼ ✻ ✺ ✹ ✦ ✧</h1>
-    <hr>
-    {% if user.is_authenticated %}
-    <section class="post" id="statusBox">
-        <h2>New Post!</h2>
-        <form id="statusUpdate" action="{% url 'post' %}">
+    <div class="profileHeader">
+        <h1 style="text-align:center">███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Profile of {{ userProfile }}▒▒▒▒▒▒▒▒▒▒▒▒▒ ʕっ•ᴥ•ʔっ </h1>
+        <form method="post" id="followButton" action="{% url 'follow' userProfile %}">
             {% csrf_token %}
-            <textarea class="form-control" id="post-body" placeholder="What's on your mind? 200 characters or less!"
-                name="post"></textarea>
-            <input class="btn btn-primary" type="submit" value="Post!">
         </form>
-    </section>
-    {% endif %}
-
+    </div>
+    <div class="followCount container">
+        <h4>Followers: <span id="followeeCount">{{ followees }}</span> </h4>
+        <h4>Following: <span id="followerCount">{{ followers }}</span> </h4>
+    </div>
     <section id="userProfileInfo">
-    </section>
 
+    </section>
     <section id="allPosts">
         {% for post in page_obj %}
         <div class="post">
-            <a href="{% url 'userProfile' post.owner.username %}" class="font-weight-bold text-dark h2">
+            <a href="{% url 'userProfile' post.owner.username %}" id="userTitle" class="font-weight-bold text-dark h2">
                 ☋ {{post.owner.username}} Ⓢ Ⓐ Ⓨ Ⓢ <br>
             </a>
-            <hr>
             <span class="text-right" style="font-size: 0.7rem;color:gray;">
                 {{ post.created }}
             </span>
-            <br>
+
             <p class="h1"> {{post.text}} </p>
             <span>
                 <span style="font-size:0.9rem; color:gray;">Likes <span>{{ post.likeCount }}</span></span>
@@ -43,23 +38,14 @@
                         ❤️
                     </a>
                 {% endif %}
-
-            </span>
-            {% if request.user == post.owner %}
-            <a href="{% url 'edit' post.id %}" class="btn btn-primary editButton {{ post.id }}">
-                Edit
-            </a>
-            {% endif %}
-            <hr>
-            <div class="emoji">
-                <p>✧ ✦ ✹ ✺ ✻ ✼ ✽ ✾ ✿ ❀ ❁ ❂ ❃ ❄ ❅ ❆ ❇ ❈ ❉ ❊ ❋ ⚘ ⚙ ⚛</p>
-            </div>
+                <hr>
+                <div class="emoji">
+                    <p>✧ ✦ ✹ ✺ ✻ ✼ ✽ ✾ ✿ ❀ ❁ ❂ ❃ ❄ ❅ ❆ ❇ ❈ ❉ ❊ ❋ ⚘ ⚙ ⚛</p>
+                </div>
         </div>
         {% endfor %}
     </section>
-
     <hr>
-
     <nav class="container">
         <ul class="pagination">
             {% if page_obj.number == 1 %}
@@ -89,8 +75,8 @@
             {% endif %}
         </ul>
     </nav>
-
 </div>
+
 {% endblock %}
 
 {% block script %}

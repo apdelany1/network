@@ -8,15 +8,16 @@ class Posts(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     text = models.TextField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
+    likeCount = models.IntegerField(default=0)
     def __str__(self):
-        return f"{self.owner} said {self.text} on {self.created}"
+        return f"{self.owner} said {self.text} on {self.created} and got {self.likeCount}likes"
     def serialize(self):
         return {
             "id": self.id,
             "owner": self.owner.username,
             "text": self.text,
-            "created": self.created.strftime("%b %d %Y, %I:%M %p")
-
+            "created": self.created.strftime("%b %d %I:%M"),
+            "likeCount": self.likeCount
         }
 
 class Follower(models.Model):
