@@ -4,7 +4,7 @@
 {% block body %}
 <div class="container-xxl" id="container">
     <div class="profileHeader">
-        <h1 style="text-align:center">███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Profile of {{ userProfile }}▒▒▒▒▒▒▒▒▒▒▒▒▒ ʕっ•ᴥ•ʔっ </h1>
+        <h1 style="text-align:center">███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Profile of {{ userProfile }} ʕっ•ᴥ•ʔっ </h1>
         <form method="post" id="followButton" action="{% url 'follow' userProfile %}">
             {% csrf_token %}
         </form>
@@ -19,8 +19,9 @@
     <section id="allPosts">
         {% for post in page_obj %}
         <div class="post">
+            <span style="font-size:2rem">☋</span>
             <a href="{% url 'userProfile' post.owner.username %}" id="userTitle" class="font-weight-bold text-dark h2">
-                ☋ {{post.owner.username}} Ⓢ Ⓐ Ⓨ Ⓢ <br>
+                {{post.owner.username}}<br>
             </a>
             <span class="text-right" style="font-size: 0.7rem;color:gray;">
                 {{ post.created }}

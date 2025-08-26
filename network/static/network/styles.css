@@ -51,10 +51,11 @@ h3 {
 
 .post .h1 {
     font-size: 2rem;
-    background-color: rgba(251, 202, 255, 0.568);
+    background-color: rgba(224, 242, 254, 0.925);
+    font-weight: bold;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 10px 10px 1px rgba(7, 45, 151, 0.932);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.411);
     margin: 30px;
     font-family: 'Courier New', Courier, monospace;
     width: 70%;

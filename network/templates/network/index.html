@@ -23,8 +23,9 @@
     <section id="allPosts">
         {% for post in page_obj %}
         <div class="post">
+            <span style="font-size:2rem">☋</span>
             <a href="{% url 'userProfile' post.owner.username %}" class="font-weight-bold text-dark h2">
-                ☋ {{post.owner.username}} Ⓢ Ⓐ Ⓨ Ⓢ <br>
+                {{post.owner.username}} <br>
             </a>
             <hr>
             <span class="text-right" style="font-size: 0.7rem;color:gray;">
