@@ -19,7 +19,7 @@
     <section id="allPosts">
         {% for post in page_obj %}
         <div class="post">
-            <span style="font-size:2rem">☋ </span>
+            <span style="font-size:2rem">☋</span>
             <a href="{% url 'userProfile' post.owner.username %}" id="userTitle" class="font-weight-bold text-dark h2">
                 {{post.owner.username}}<br>
             </a>
@@ -37,6 +37,11 @@
                 {% else %}
                     <a href="{% url 'login' %}">
                         ❤️
+                    </a>
+                {% endif %}
+                {% if request.user == post.owner %}
+                    <a href="{% url 'edit' post.id %}" class="btn btn-primary editButton {{ post.id }}">
+                        Edit
                     </a>
                 {% endif %}
                 <hr>

@@ -155,7 +155,7 @@ def follow(request, uname):
 def following(request):
     following = Follower.objects.filter(follower=request.user).values_list('followee')
 
-    posts = Posts.objects.filter(owner__id__in=following)
+    posts = Posts.objects.order_by("-created").filter(owner__id__in=following)
     paginator = Paginator(posts, 10)
     page_number = request.GET.get("page")
 
